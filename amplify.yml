@@ -5,6 +5,8 @@ frontend:
       commands:
         - nvm use 22
         - node -v
+        - npm -v
+        - rm -rf node_modules
         - npm ci
     build:
       commands:
@@ -13,6 +15,3 @@ frontend:
     baseDirectory: dist
     files:
       - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*

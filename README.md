@@ -26,7 +26,10 @@ npm run dev
 4. Amplify reads `amplify.yml` at the repo root — build output is `dist/`.
 5. Node **22** is required (see `.nvmrc`). Amplify runs `nvm use 22` in `amplify.yml`.
 
-If a build fails after the restructure, open the failed build log and check for `package.json` not found (wrong app root) or Node/Vite errors (upgrade Node to 22 in build settings).
+If a build fails after the restructure, open the failed build log and check for:
+
+- `package.json` not found → **App root** is still `portfolio-app` (clear it)
+- `npm error code EUSAGE` on `npm ci` → expand the log; often lockfile out of sync or missing `package-lock.json` in the build folder (wrong app root). Clear **Build cache** in Amplify (App settings → General → Clear cache) and redeploy.
 
 ## When you might want AWS backend later
 
