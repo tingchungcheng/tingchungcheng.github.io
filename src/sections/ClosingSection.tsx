@@ -15,7 +15,7 @@ export function ClosingSection() {
         <RevealText as="p" className="closing-text" delay={200}>
           That&apos;s all from me,
           <br />
-          and I wish to see you again if our paths cross.
+          and I wish to see you again if our paths cross one day.
           <br />
           {/* <br />
           言尽于此，
