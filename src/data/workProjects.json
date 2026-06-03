@@ -50,6 +50,20 @@
   },
   {
     "id": "project-eight",
+    "title": "Sign Language Recognition Mobile App",
+    "image": "signLangRegApp",
+    "url": "https://github.com/tingchungcheng/signlanguage-recognition-app",
+    "tech": ["React Native", "Tensorflow", "Python", "2026"]
+  },
+  {
+    "id": "project-nine",
+    "title": "RNN vs Transformer Visualization Tool",
+    "image": "RNNvsTransformer",
+    "url": "https://github.com/tingchungcheng/RNNandTransformerVisualTool",
+    "tech": ["React", "FastAPI", "Machine Learning", "2026"]
+  },
+  {
+    "id": "project-ten",
     "title": "Lengzaicc Portfolio Website",
     "image": "portfolio",
     "tech": ["React", "Vite", "2026"]

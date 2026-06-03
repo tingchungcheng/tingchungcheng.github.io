@@ -6,6 +6,8 @@ import kamiInventory from "../assets/images/experience/kamiInventory.png";
 import ragChat from "../assets/images/experience/ragChat.png";
 import weeklySharing from "../assets/images/experience/weeklySharing.png";
 import portfolio from "../assets/images/experience/portfolio.png";
+import RNNvsTransformer from "../assets/images/experience/RNNvsTransformer.png";
+import signLangRegApp from "../assets/images/experience/signLangRegApp.png";
 
 /** Register each work image here; reference its key from workProjects.json */
 export const workProjectImages: Record<string, string> = {
@@ -17,4 +19,6 @@ export const workProjectImages: Record<string, string> = {
   ragChat,
   weeklySharing,
   portfolio,
+  RNNvsTransformer,
+  signLangRegApp,
 };
