@@ -6,6 +6,7 @@ import kamiInventory from "../assets/images/experience/kamiInventory.png";
 import ragChat from "../assets/images/experience/ragChat.png";
 import weeklySharing from "../assets/images/experience/weeklySharing.png";
 import portfolio from "../assets/images/experience/portfolio.png";
+import GoRecall from "../assets/images/experience/GoRecall.png";
 import RNNvsTransformer from "../assets/images/experience/RNNvsTransformer.png";
 import signLangRegApp from "../assets/images/experience/signLangRegApp.png";
 
@@ -19,6 +20,7 @@ export const workProjectImages: Record<string, string> = {
   ragChat,
   weeklySharing,
   portfolio,
+  GoRecall,
   RNNvsTransformer,
   signLangRegApp,
 };

@@ -36,7 +36,7 @@
   },
   {
     "id": "project-six",
-    "title": "DocsToData RAG Chat",
+    "title": "DocsToData (RAG Chat)",
     "image": "ragChat",
     "url": "https://www.linkedin.com/in/ting-chung-cheng-775a10225/details/projects/",
     "tech": ["React", "Python", "", "2025"]
@@ -64,6 +64,12 @@
   },
   {
     "id": "project-ten",
+    "title": "GoRecall (Meeting Transcription System)",
+    "image": "GoRecall",
+    "tech": ["React", "Ollama", "Pyannote", "2026"]
+  },
+  {
+    "id": "project-eleven",
     "title": "Lengzaicc Portfolio Website",
     "image": "portfolio",
     "tech": ["React", "Vite", "2026"]
