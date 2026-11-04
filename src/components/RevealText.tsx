@@ -6,6 +6,7 @@ type RevealTextProps = {
   children: ReactNode
   className?: string
   delay?: number
+  immediate?: boolean
 }
 
 export function RevealText({
@@ -13,13 +14,14 @@ export function RevealText({
   children,
   className = '',
   delay = 0,
+  immediate = false,
 }: RevealTextProps) {
   const { ref, inView } = useInView()
 
   return (
     <Component
       ref={ref as Ref<HTMLElement>}
-      className={`reveal-text${inView ? ' is-visible' : ''}${className ? ` ${className}` : ''}`}
+      className={`reveal-text${inView || immediate ? ' is-visible' : ''}${className ? ` ${className}` : ''}`}
       style={{ '--reveal-delay': `${delay}ms` } as CSSProperties}
     >
       {children}

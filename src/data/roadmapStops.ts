@@ -60,9 +60,10 @@ export const roadmapStops: RoadmapStop[] = [
   },
   {
     year: 2026,
-    title: "Whats next",
-    description: "We will see.",
-    image: roadmapImages.daikin26,
+    title: "Leading Phase 4",
+    description:
+      "Leading the Go Daikin Phase 4 redesign — collab with designers, cloud members and did TONS of bug fixes. Happen soon! (I hope) 🤞",
+    image: roadmapImages.phase4,
     x: 73,
     y: 38,
     side: "below",

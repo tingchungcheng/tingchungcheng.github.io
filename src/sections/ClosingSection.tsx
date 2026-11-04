@@ -1,38 +1,29 @@
-import { MeteorShower } from "../components/MeteorShower";
-import { RevealText } from "../components/RevealText";
-import { useInView } from "../hooks/useInView";
+import { RevealText } from '../components/RevealText'
 
 export function ClosingSection() {
-  const { ref: sectionRef, inView: sectionActive } = useInView({
-    threshold: 0.15,
-    rootMargin: "0px",
-  });
-
   return (
-    <section ref={sectionRef} id="closing" className="section closing-section">
-      <MeteorShower active={sectionActive} />
+    <section id="closing" className="section closing-section">
       <div className="closing-stage">
-        <RevealText as="p" className="closing-text" delay={200}>
-          That&apos;s all from me,
-          <br />
-          and I wish to see you again if our paths cross one day.
-          <br />
-          {/* <br />
-          言尽于此，
-          <br />
-          再见。
-          <br />
-          <br />
-          Itu sahaja dari I,
-          <br />
-          harap kita berjumpa lagi.
-          <br />
-          <br />
-          以上です,
-          <br />
-          またどこかでお会いできれば嬉しいです。 */}
-        </RevealText>
+        <div className="closing-content">
+          <RevealText delay={80}>
+            <p className="editorial-kicker">04 / Keep in touch</p>
+          </RevealText>
+          <RevealText as="h2" className="closing-text" delay={160}>
+            Have a good problem? Let&apos;s make it move.
+          </RevealText>
+          <RevealText as="div" delay={280}>
+            <a
+              className="closing-link"
+              href="https://www.linkedin.com/in/ting-chung-cheng-775a10225/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Find me on LinkedIn <span aria-hidden="true">↗</span>
+            </a>
+          </RevealText>
+          <p className="closing-footer">Built with curiosity in Malaysia · 2026</p>
+        </div>
       </div>
     </section>
-  );
+  )
 }

@@ -5,7 +5,7 @@ import { SidebarIcon } from './SidebarIcon'
 
 const NAV_ITEMS = [
   { id: 'hero', label: 'Home', icon: 'home' as const },
-  { id: 'quotes', label: 'Quotes', icon: 'comment' as const },
+  { id: 'quotes', label: 'About', icon: 'comment' as const },
   { id: 'roadmap', label: 'Roadmap', icon: 'roadmap' as const },
   { id: 'work', label: 'Work', icon: 'briefcase' as const },
 ]
@@ -99,6 +99,15 @@ export function GlassSidebar() {
 
   return (
     <nav className="glass-sidebar" aria-label="Page sections">
+      <button
+        type="button"
+        className="site-mark"
+        onClick={() => scrollTo('hero')}
+        aria-label="Back to home"
+      >
+        ting<span>↗</span>
+      </button>
+      <span className="site-availability">Available for good problems</span>
       <ul className="glass-sidebar-list">
         {NAV_ITEMS.map((item) => (
           <li key={item.id}>
@@ -110,6 +119,8 @@ export function GlassSidebar() {
               title={item.label}
               onClick={() => scrollTo(item.id)}
             >
+              <span className="nav-index">0{NAV_ITEMS.indexOf(item) + 1}</span>
+              <span className="nav-label">{item.label}</span>
               <SidebarIcon name={item.icon} bold={activeId === item.id} />
             </button>
           </li>
@@ -124,6 +135,7 @@ export function GlassSidebar() {
             rel="noopener noreferrer"
             onClick={() => trackButtonClick('linkedin')}
           >
+            <span className="nav-label">LinkedIn</span>
             <SidebarIcon name="linkedin" />
           </a>
         </li>

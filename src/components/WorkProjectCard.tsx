@@ -4,7 +4,6 @@ import { scrollToSection } from '../hooks/useSmoothScroll'
 export type WorkProject = {
   id: string
   title: string
-  description?: string
   image: string
   /** External URL or in-page hash (e.g. #quotes). Omit for project-eight (home). */
   url?: string
@@ -54,9 +53,6 @@ export function WorkProjectCard({ project }: WorkProjectCardProps) {
       </div>
       <div className="work-card-body">
         <h3 className="work-card-title">{project.title}</h3>
-        {project.description ? (
-          <p className="work-card-description">{project.description}</p>
-        ) : null}
         <ul className="work-card-tech" aria-label={`${project.title} tech stack`}>
           {project.tech.filter(Boolean).map((tag) => (
             <li key={tag}>{tag}</li>

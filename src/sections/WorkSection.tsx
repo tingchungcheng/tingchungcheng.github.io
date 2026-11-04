@@ -4,11 +4,21 @@ import { workProjects } from '../data/workProjects'
 
 export function WorkSection() {
   return (
-    <section id="work" className="section work-section">
+    <section id="work" className="section work-section editorial-work">
       <div className="section-inner work-section-inner">
-        <RevealText as="h2" delay={0}>
-          What I have done / working on
-        </RevealText>
+        <div className="editorial-section-head work-section-head">
+          <span>03 / Selected work</span>
+          <span>{String(workProjects.length).padStart(2, '0')} projects, give or take</span>
+        </div>
+        <div className="work-intro">
+          <RevealText as="h2" delay={0}>
+            Things I&apos;ve shipped, shaped and still tinkering with.
+          </RevealText>
+          <RevealText as="p" delay={100}>
+            A small archive of products, prototypes and experiments across
+            mobile, web, cloud and machine learning.
+          </RevealText>
+        </div>
         <ul className="work-grid">
           {workProjects.map((project, index) => (
             <li key={project.id}>

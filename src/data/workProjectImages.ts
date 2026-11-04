@@ -9,6 +9,7 @@ import portfolio from "../assets/images/experience/portfolio.png";
 import GoRecall from "../assets/images/experience/GoRecall.png";
 import RNNvsTransformer from "../assets/images/experience/RNNvsTransformer.png";
 import signLangRegApp from "../assets/images/experience/signLangRegApp.png";
+import carot from "../assets/images/experience/carot.png";
 
 /** Register each work image here; reference its key from workProjects.json */
 export const workProjectImages: Record<string, string> = {
@@ -23,4 +24,5 @@ export const workProjectImages: Record<string, string> = {
   GoRecall,
   RNNvsTransformer,
   signLangRegApp,
+  carot,
 };

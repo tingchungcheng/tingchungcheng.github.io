@@ -93,6 +93,8 @@ function getPanForStop(
 export function RoadmapSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const panelCardRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const stopRefs = useRef<(HTMLElement | null)[]>([]);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
@@ -140,8 +142,10 @@ export function RoadmapSection() {
 
     const section = sectionRef.current;
     const pin = pinRef.current;
+    const panel = panelRef.current;
+    const panelCard = panelCardRef.current;
     const stage = stageRef.current;
-    if (!section || !pin || !stage || reduced) return;
+    if (!section || !pin || !panel || !panelCard || !stage || reduced) return;
 
     const stops = stopRefs.current.filter(Boolean) as HTMLElement[];
     const cards = cardRefs.current.filter(Boolean) as HTMLElement[];
@@ -153,6 +157,15 @@ export function RoadmapSection() {
         (window.innerHeight * timelineDuration * SCROLL_PER_STOP_VH) / 100;
 
       gsap.set(stage, { x: 0, y: 0, scale: 1 });
+      // Keep the chapter surface present while the card enters from below.
+      // Moving the entire panel first created an empty gap after About.
+      gsap.set(panel, { yPercent: 0 });
+      gsap.set(panelCard, {
+        yPercent: 100,
+        scale: 0.84,
+        rotation: -2.8,
+        transformOrigin: "50% 0%",
+      });
       gsap.set(stops, { scale: 0.72, opacity: 0.45 });
       gsap.set(cards, { opacity: 0, y: 12, scale: 0.92 });
 
@@ -236,7 +249,18 @@ export function RoadmapSection() {
         });
       };
 
-      // First segment: show the full road, then ease into 2022 without clipping
+      // First segment: bring the card up from below, then ease into 2022.
+      tl.to(
+        panelCard,
+        {
+          yPercent: 0,
+          scale: 1,
+          rotation: 0,
+          duration: INTRO_HOLD_RATIO,
+          ease: "power3.out",
+        },
+        0,
+      );
       tl.to(
         stage,
         { x: 0, y: 0, scale: 1, duration: INTRO_HOLD_RATIO, ease: "none" },
@@ -340,94 +364,98 @@ export function RoadmapSection() {
         </div>
       ) : (
         <div ref={pinRef} className="roadmap-pin">
-          <div className="roadmap-ui">
-            <h2 className="roadmap-heading">Roadmap</h2>
-            <ol className="roadmap-rail" aria-label="Years">
-              {roadmapStops.map((stop, index) => (
-                <li key={stop.year}>
-                  <button
-                    type="button"
-                    className={`roadmap-rail-item${index === activeIndex ? " is-active" : ""}`}
-                    onClick={() => scrollToStop(index)}
-                    aria-label={`Go to ${stop.year}`}
-                    aria-current={index === activeIndex ? "true" : undefined}
-                  >
-                    {stop.year}
-                  </button>
-                </li>
-              ))}
-            </ol>
-            <p className="roadmap-hint">Scroll to follow my journey</p>
+          <div ref={panelRef} className="roadmap-panel">
+            <div ref={panelCardRef} className="roadmap-panel-card">
+              <div className="roadmap-ui">
+              <h2 className="roadmap-heading">Roadmap</h2>
+              <ol className="roadmap-rail" aria-label="Years">
+                {roadmapStops.map((stop, index) => (
+                  <li key={stop.year}>
+                    <button
+                      type="button"
+                      className={`roadmap-rail-item${index === activeIndex ? " is-active" : ""}`}
+                      onClick={() => scrollToStop(index)}
+                      aria-label={`Go to ${stop.year}`}
+                      aria-current={index === activeIndex ? "true" : undefined}
+                    >
+                      {stop.year}
+                    </button>
+                  </li>
+                ))}
+              </ol>
+              <p className="roadmap-hint">Scroll to follow my journey</p>
 
-            <div className="roadmap-mobile-detail" aria-live="polite">
-              <img src={roadmapStops[activeIndex].image} alt="" />
-              <div className="roadmap-mobile-detail-body">
-                <h3>
-                  {roadmapStops[activeIndex].year}.{" "}
-                  {roadmapStops[activeIndex].title}
-                </h3>
-                <p>{roadmapStops[activeIndex].description}</p>
+              <div className="roadmap-mobile-detail" aria-live="polite">
+                <img src={roadmapStops[activeIndex].image} alt="" />
+                <div className="roadmap-mobile-detail-body">
+                  <h3>
+                    {roadmapStops[activeIndex].year}.{" "}
+                    {roadmapStops[activeIndex].title}
+                  </h3>
+                  <p>{roadmapStops[activeIndex].description}</p>
+                </div>
               </div>
-            </div>
-          </div>
+              </div>
 
-          <div className="roadmap-viewport">
-            <div
-              ref={stageRef}
-              className="roadmap-stage"
-              style={
-                {
-                  "--roadmap-aspect": ROADMAP_ASPECT,
-                } as React.CSSProperties
-              }
-            >
-              <img
-                className="roadmap-bg"
-                src={roadmapBg}
-                alt=""
-                draggable={false}
-              />
-              <div className="roadmap-vignette" aria-hidden />
-              {roadmapStops.map((stop, index) => (
-                <article
-                  key={stop.year}
-                  ref={(el) => {
-                    stopRefs.current[index] = el;
-                  }}
-                  className="roadmap-stop"
-                  data-side={stop.side}
-                  style={
-                    {
-                      "--stop-x": `${stop.x}%`,
-                      "--stop-y": `${stop.y}%`,
-                    } as React.CSSProperties
-                  }
-                >
-                  <div
+              <div className="roadmap-viewport">
+              <div
+                ref={stageRef}
+                className="roadmap-stage"
+                style={
+                  {
+                    "--roadmap-aspect": ROADMAP_ASPECT,
+                  } as React.CSSProperties
+                }
+              >
+                <img
+                  className="roadmap-bg"
+                  src={roadmapBg}
+                  alt=""
+                  draggable={false}
+                />
+                <div className="roadmap-vignette" aria-hidden />
+                {roadmapStops.map((stop, index) => (
+                  <article
+                    key={stop.year}
                     ref={(el) => {
-                      cardRefs.current[index] = el;
+                      stopRefs.current[index] = el;
                     }}
-                    className="roadmap-stop-card"
+                    className="roadmap-stop"
+                    data-side={stop.side}
+                    style={
+                      {
+                        "--stop-x": `${stop.x}%`,
+                        "--stop-y": `${stop.y}%`,
+                      } as React.CSSProperties
+                    }
                   >
-                    <img src={stop.image} alt="" />
-                    <h3>
-                      {stop.year}. {stop.title}
-                    </h3>
-                    <p>{stop.description}</p>
-                  </div>
-                  <span className="roadmap-stop-connector" aria-hidden />
-                  <button
-                    type="button"
-                    className="roadmap-stop-marker"
-                    onClick={() => scrollToStop(index)}
-                    aria-label={`Go to ${stop.year}: ${stop.title}`}
-                    aria-current={index === activeIndex ? "true" : undefined}
-                  >
-                    {stop.year}
-                  </button>
-                  <span className="roadmap-stop-pin" aria-hidden />
-                </article>
-              ))}
+                    <div
+                      ref={(el) => {
+                        cardRefs.current[index] = el;
+                      }}
+                      className="roadmap-stop-card"
+                    >
+                      <img src={stop.image} alt="" />
+                      <h3>
+                        {stop.year}. {stop.title}
+                      </h3>
+                      <p>{stop.description}</p>
+                    </div>
+                    <span className="roadmap-stop-connector" aria-hidden />
+                    <button
+                      type="button"
+                      className="roadmap-stop-marker"
+                      onClick={() => scrollToStop(index)}
+                      aria-label={`Go to ${stop.year}: ${stop.title}`}
+                      aria-current={index === activeIndex ? "true" : undefined}
+                    >
+                      {stop.year}
+                    </button>
+                    <span className="roadmap-stop-pin" aria-hidden />
+                  </article>
+                ))}
+              </div>
+              </div>
             </div>
           </div>
         </div>

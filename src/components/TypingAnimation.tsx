@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { typingLines } from '../data/typingLines'
 
-const TYPING_MS = 70
-const PAUSE_MS = 1800
-const DELETE_MS = 40
+const TYPING_MS = 36
+const PAUSE_MS = 3600
+const DELETE_MS = 18
 
 export function TypingAnimation() {
   const [lineIndex, setLineIndex] = useState(0)
@@ -36,7 +36,7 @@ export function TypingAnimation() {
 
   return (
     <p className="typing-line" aria-live="polite">
-      <span>{text}</span>
+      <span className="typing-text">{text}</span>
       <span className="typing-cursor" aria-hidden="true">
         |
       </span>

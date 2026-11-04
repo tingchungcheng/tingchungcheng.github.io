@@ -66,6 +66,7 @@
     "id": "project-ten",
     "title": "GoRecall (Meeting Transcription System)",
     "image": "GoRecall",
+    "url": "https://github.com/tingchungcheng/GoRecall",
     "tech": ["React", "Ollama", "Pyannote", "2026"]
   },
   {
@@ -73,5 +74,19 @@
     "title": "Lengzaicc Portfolio Website",
     "image": "portfolio",
     "tech": ["React", "Vite", "2026"]
+  },
+  {
+    "id": "project-twelve",
+    "title": "C-arot — Tarot & Astrology Experience",
+    "image": "carot",
+    "url": "https://c-arot.com",
+    "tech": ["Next.js", "TypeScript", "AWS", "AI", "2026"]
+  },
+  {
+    "id": "project-fourteen",
+    "title": "N0ted Mobile Notes App",
+    "image": "",
+    "url": "https://github.com/tingchungcheng/N0ted",
+    "tech": ["Expo", "React Native", "TypeScript", "2026"]
   }
 ]
