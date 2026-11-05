@@ -10,6 +10,7 @@ import GoRecall from "../assets/images/experience/GoRecall.png";
 import RNNvsTransformer from "../assets/images/experience/RNNvsTransformer.png";
 import signLangRegApp from "../assets/images/experience/signLangRegApp.png";
 import carot from "../assets/images/experience/carot.png";
+import n0ted from "../../showcase_landing/n0ted/n0ted-1.png";
 
 /** Register each work image here; reference its key from workProjects.json */
 export const workProjectImages: Record<string, string> = {
@@ -25,4 +26,5 @@ export const workProjectImages: Record<string, string> = {
   RNNvsTransformer,
   signLangRegApp,
   carot,
+  n0ted,
 };

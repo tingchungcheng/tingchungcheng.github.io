@@ -85,7 +85,7 @@
   {
     "id": "project-fourteen",
     "title": "N0ted Mobile Notes App",
-    "image": "",
+    "image": "n0ted",
     "url": "https://github.com/tingchungcheng/N0ted",
     "tech": ["Expo", "React Native", "TypeScript", "2026"]
   }
