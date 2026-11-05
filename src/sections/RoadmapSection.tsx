@@ -101,7 +101,10 @@ export function RoadmapSection() {
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
   const staticItemRefs = useRef<(HTMLLIElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [reducedMotion] = useState(() =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
 
   const scrollToStop = useCallback(
     (index: number) => {
@@ -138,8 +141,6 @@ export function RoadmapSection() {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    setReducedMotion(reduced);
-
     const section = sectionRef.current;
     const pin = pinRef.current;
     const panel = panelRef.current;
@@ -354,7 +355,7 @@ export function RoadmapSection() {
                   {stop.year}
                 </button>
                 <div>
-                  <img src={stop.image} alt="" />
+                  <img src={stop.image} alt={`${stop.title} project image`} />
                   <h3>{stop.title}</h3>
                   <p>{stop.description}</p>
                 </div>
@@ -386,7 +387,10 @@ export function RoadmapSection() {
               <p className="roadmap-hint">Scroll to follow my journey</p>
 
               <div className="roadmap-mobile-detail" aria-live="polite">
-                <img src={roadmapStops[activeIndex].image} alt="" />
+                <img
+                  src={roadmapStops[activeIndex].image}
+                  alt={`${roadmapStops[activeIndex].title} project image`}
+                />
                 <div className="roadmap-mobile-detail-body">
                   <h3>
                     {roadmapStops[activeIndex].year}.{" "}

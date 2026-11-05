@@ -61,9 +61,9 @@ export function MeteorShower({ active }: MeteorShowerProps) {
   const spawnTimerRef = useRef(0)
   const activeRef = useRef(active)
 
-  activeRef.current = active
-
   useEffect(() => {
+    activeRef.current = active
+
     if (!active) {
       meteorsRef.current = []
       spawnTimerRef.current = 0

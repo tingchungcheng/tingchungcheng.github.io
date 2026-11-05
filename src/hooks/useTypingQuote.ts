@@ -19,9 +19,11 @@ export function useTypingQuote() {
     }
 
     if (deleting && text === '') {
-      setDeleting(false)
-      setQuoteIndex((index) => (index + 1) % quotes.length)
-      return
+      const timer = window.setTimeout(() => {
+        setDeleting(false)
+        setQuoteIndex((index) => (index + 1) % quotes.length)
+      }, 0)
+      return () => window.clearTimeout(timer)
     }
 
     const delay = deleting ? DELETE_MS : TYPE_MS

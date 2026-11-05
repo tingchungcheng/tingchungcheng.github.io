@@ -1,0 +1,163 @@
+CODEX TASK BRIEF Improve Google Search Discoverability for Ting Chung
+Cheng’s GitHub Pages Portfolio
+
+Website: https://tingchungcheng.github.io/ GitHub profile:
+https://github.com/tingchungcheng
+
+OBJECTIVE Improve the portfolio’s technical SEO so search engines can
+crawl, understand, index, and associate the website with the
+professional identity “Ting Chung Cheng”. This is an implementation
+task, not a full redesign.
+
+WORKING RULES 1. Inspect the repository, framework, routing, build
+output, and GitHub Pages deployment before editing. 2. Preserve the
+existing design, content, routes, functionality, and deployment
+workflow. 3. Do not replace the site with a new template or framework.
+4. Never invent qualifications, employers, achievements, project
+details, contact details, or social URLs. 5. Reuse only facts and URLs
+already present in the repository. Mark missing information as TODO. 6.
+Keep the site compatible with GitHub Pages. 7. Avoid paid SEO services,
+analytics trackers, and unnecessary dependencies. 8. Explain changes and
+provide validation results.
+
+PHASE 1 — AUDIT Inspect and briefly report: - Framework and version,
+build command, output directory, and deployment process. - Whether the
+page is static HTML or relies on client-side rendering. - Existing
+title, meta description, canonical URL, Open Graph, Twitter/X metadata,
+robots directives, sitemap, and structured data. - Whether important
+text is available in the initial HTML. - Broken links, missing titles,
+duplicate titles, missing image alt text, and obvious mobile/performance
+issues. - Whether the deployed GitHub Pages URL is handled consistently.
+
+PHASE 2 — ON-PAGE SEO Implement these using the existing framework:
+
+A. Title Use an accurate title containing the professional name and
+role. Suggested: “Ting Chung Cheng | Software Engineer | React Native &
+AI” Adapt it to the actual portfolio content. Do not keyword-stuff.
+
+B. Meta description Add a unique, human-readable description around
+140–160 characters. Suggested: “Ting Chung Cheng is a software engineer
+based in Malaysia, building mobile applications and AI-powered products
+with React Native, TypeScript, Python and AWS.” Only mention skills
+genuinely represented on the site.
+
+C. Canonical URL Set the homepage canonical URL to:
+https://tingchungcheng.github.io/ Do not point it to localhost, a
+preview deployment, or another domain.
+
+D. Social sharing metadata Add suitable: - og:type - og:title -
+og:description - og:url - og:image - og:site_name - twitter:card -
+twitter:title - twitter:description - twitter:image
+
+Use an existing suitable public image if available. If none exists, do
+not create a broken path; report that a social preview image is needed
+and recommend a 1200 x 630 px asset. Use absolute image URLs.
+
+E. Semantic content - Ensure one clear H1 identifies the person or
+professional positioning. - Use logical H2/H3 hierarchy. - Ensure name,
+role, experience, skills, and project descriptions are crawlable text,
+not only images or inaccessible client-only UI. - Use descriptive link
+text. - Add meaningful alt text to informative images and empty alt text
+to decorative images. - Do not fabricate facts or rewrite the portfolio
+without reporting proposed copy changes.
+
+PHASE 3 — TECHNICAL SEO A. Sitemap Create a valid sitemap.xml at the
+public site root containing intended canonical pages. If this is a
+single-page portfolio, include only the homepage. Use HTTPS. If the
+framework already generates a sitemap, configure that instead of
+creating a conflicting file.
+
+B. robots.txt Create or update robots.txt at the public root: - Allow
+normal crawling of public pages. - Include the absolute sitemap URL. -
+Do not block CSS, JavaScript, images, or the entire site. - Do not add
+noindex directives.
+
+C. GitHub Pages compatibility - Confirm sitemap.xml and robots.txt are
+copied to the final deployment output. - Account for framework base
+paths and asset paths. - Do not assume repository-root files are
+automatically served at the deployed root; inspect build output. -
+Preserve existing GitHub Actions/Pages deployment unless a correction is
+necessary.
+
+D. Crawlability - Check for accidental noindex tags or other directives
+preventing indexing. - Ensure the deployed homepage returns a successful
+response. - Avoid duplicate indexable URLs for identical content. - Do
+not invent unnecessary routes or thin pages.
+
+E. Structured data Add valid schema.org Person JSON-LD using only
+verified facts: - @context - @type: Person - name: Ting Chung Cheng -
+url: https://tingchungcheng.github.io/ - sameAs: verified GitHub and
+LinkedIn profile URLs - jobTitle: accurate title already stated on the
+portfolio - knowsAbout: only skills supported by the portfolio - image:
+only if a real public profile image exists
+
+Do not invent employer, address, phone number, awards, education, or
+social accounts. Validate JSON syntax and ensure JSON-LD appears in
+rendered HTML.
+
+PHASE 4 — IDENTITY AND LINKS - Ensure the portfolio links to the
+verified GitHub profile: https://github.com/tingchungcheng - Use the
+exact LinkedIn URL already in the repository. If absent, leave a TODO;
+do not guess. - Link project cards to correct public repositories or
+live demos when known. - Do not expose private repositories, secrets,
+API keys, or internal endpoints. - Add useful internal links between
+portfolio pages if applicable. - If the GitHub profile README is in
+scope and can be edited safely, add the portfolio link there. Otherwise,
+tell the owner how to add the portfolio URL in GitHub profile settings
+manually.
+
+PHASE 5 — USABILITY AND PERFORMANCE Do not redesign the site. Fix only
+clear issues affecting usability or discovery: - Responsive mobile
+layout. - Oversized or unoptimized images. - Unnecessary render-blocking
+scripts. - Keyboard and screen-reader access to navigation and important
+links. - Readable contrast and text sizing. - No unnecessary third-party
+scripts.
+
+PHASE 6 — VALIDATION After implementation: 1. Run existing lint,
+type-check, test, and build commands where available. 2. Inspect
+generated build output. 3. Confirm the generated homepage contains the
+correct title, description, canonical URL, Open Graph tags, Twitter/X
+tags, and Person JSON-LD. 4. Confirm sitemap.xml and robots.txt exist in
+the actual deployment output and contain correct absolute URLs. 5. Check
+referenced images and links. 6. Use existing validation tools if
+available; do not add heavy dependencies solely for validation. 7.
+Report any checks that could not be performed.
+
+PHASE 7 — GOOGLE SEARCH CONSOLE OWNER CHECKLIST These actions require
+the website owner; do not claim to have completed them: 1. Open
+https://search.google.com/search-console 2. Add a URL-prefix property:
+https://tingchungcheng.github.io/ 3. Complete Google’s ownership
+verification. If Google supplies an HTML file or meta tag, explain
+exactly where it belongs in this project. 4. Submit
+https://tingchungcheng.github.io/sitemap.xml 5. Use URL Inspection for
+https://tingchungcheng.github.io/ and request indexing if eligible. 6.
+Explain that indexing and ranking are not guaranteed or immediate. 7.
+Later check: site:tingchungcheng.github.io “Ting Chung Cheng” developer
+site:github.com/tingchungcheng
+
+Do not claim to have verified ownership, submitted a sitemap, requested
+indexing, or changed Google’s search results. Those actions require the
+owner’s Search Console account.
+
+DELIVERABLES When finished, provide: 1. Concise audit of the original
+site. 2. Files changed and purpose of each. 3. Final SEO title and meta
+description. 4. Canonical URL and sitemap URL. 5. Structured data fields
+used and omitted. 6. Build/test results. 7. Remaining TODOs
+(e.g. missing social preview image or LinkedIn URL). 8. Step-by-step
+Google Search Console owner checklist. 9. Realistic explanation of what
+these changes can and cannot achieve.
+
+SUCCESS CRITERIA - Deployed portfolio has accurate metadata identifying
+Ting Chung Cheng. - Search engines can crawl intended public pages. -
+Sitemap and robots.txt are valid and deployed at correct paths. -
+Structured data accurately connects the portfolio to verified
+professional profiles. - Social sharing metadata and image URLs are
+valid where an image exists. - Existing design, content, functionality,
+and GitHub Pages deployment remain intact. - No fabricated personal
+details, broken URLs, secrets, or unnecessary dependencies.
+
+FINAL NOTE Technical SEO improves eligibility for discovery; it does not
+guarantee first-page ranking or immediate exposure. Search visibility
+also depends on content quality, reputation, relevant external links,
+competition, and time. Prioritize accurate identity signals and useful
+project content over keyword stuffing or artificial backlinks.

@@ -19,9 +19,11 @@ export function TypingAnimation() {
     }
 
     if (deleting && text === '') {
-      setDeleting(false)
-      setLineIndex((i) => (i + 1) % typingLines.length)
-      return
+      const timer = window.setTimeout(() => {
+        setDeleting(false)
+        setLineIndex((i) => (i + 1) % typingLines.length)
+      }, 0)
+      return () => window.clearTimeout(timer)
     }
 
     const delay = deleting ? DELETE_MS : TYPING_MS
