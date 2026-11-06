@@ -887,6 +887,40 @@ h2 {
   width: min(1240px, 100%);
 }
 
+.hero-showcase-preloader {
+  position: absolute;
+  top: 30%;
+  right: clamp(4rem, 13vw, 13rem);
+  z-index: 1;
+  display: grid;
+  width: clamp(9rem, 13vw, 14rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(220, 242, 241, 0.72);
+  background: rgba(15, 16, 53, 0.78);
+  box-shadow:
+    0.85rem 1rem 0 rgba(127, 199, 217, 0.16),
+    0 2rem 4rem rgba(0, 0, 0, 0.4);
+  color: rgba(220, 242, 241, 0.65);
+  transform: rotate(45deg);
+  animation: hero-showcase-preloader-spin 1.8s linear infinite;
+}
+
+.hero-showcase-preloader span {
+  max-width: 7rem;
+  color: inherit;
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(-45deg);
+}
+
+@keyframes hero-showcase-preloader-spin {
+  from { transform: rotate(45deg); }
+  to { transform: rotate(405deg); }
+}
+
 .hero-device {
   position: absolute;
   top: 27%;
@@ -913,6 +947,36 @@ h2 {
 
 .hero-device--phone {
   height: auto;
+}
+
+.hero-device--entering.hero-device--phone {
+  animation: hero-device-enter-phone 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-device--entering.hero-device--laptop {
+  animation: hero-device-enter-laptop 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes hero-device-enter-phone {
+  from {
+    opacity: 0;
+    transform: rotate(45deg) scale(0.45);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(7deg) scale(1);
+  }
+}
+
+@keyframes hero-device-enter-laptop {
+  from {
+    opacity: 0;
+    transform: rotate(45deg) scale(0.45);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-4deg) translate3d(-1rem, 1rem, 0) scale(1);
+  }
 }
 
 .hero-device-shell {
@@ -1619,8 +1683,10 @@ h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-showcase-preloader,
   .hero-orbit,
   .hero-device,
+  .hero-device--entering,
   .hero-device-shell,
   .hero-device-screen,
   .hero-device-base,

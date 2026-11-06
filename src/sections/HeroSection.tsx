@@ -10,11 +10,44 @@ export function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
   const [projectIndex, setProjectIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
+  const [isShowcaseReady, setIsShowcaseReady] = useState(false);
   const showcaseProject = showcaseProjects[projectIndex];
   const showcaseImage = showcaseProject.images[imageIndex];
   const showcaseWatch = showcaseProject.watchImages?.[imageIndex];
 
   useEffect(() => {
+    let isMounted = true;
+    const sources = Array.from(
+      new Set(
+        showcaseProjects.flatMap((project) => [
+          ...project.images.map((image) => image.src),
+          ...(project.watchImages ?? []),
+        ]),
+      ),
+    );
+
+    Promise.all(
+      sources.map(
+        (source) =>
+          new Promise<void>((resolve) => {
+            const image = new window.Image();
+            image.onload = () => resolve();
+            image.onerror = () => resolve();
+            image.src = source;
+          }),
+      ),
+    ).then(() => {
+      if (isMounted) setIsShowcaseReady(true);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isShowcaseReady) return;
+
     const timer = window.setTimeout(() => {
       setImageIndex((currentImageIndex) => {
         if (currentImageIndex + 1 < showcaseProject.images.length) {
@@ -30,7 +63,7 @@ export function HeroSection() {
     }, SHOWCASE_INTERVAL_MS);
 
     return () => window.clearTimeout(timer);
-  }, [projectIndex, imageIndex, showcaseProject.images.length]);
+  }, [isShowcaseReady, projectIndex, imageIndex, showcaseProject.images.length]);
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -92,16 +125,21 @@ export function HeroSection() {
       <div className="hero-sticky">
         <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
         <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
-        <div
-          className={`hero-device hero-device--${showcaseProject.device}${showcaseWatch ? " hero-device--paired" : ""}`}
-          aria-label={`${showcaseProject.title} showcase`}
-          style={{
-            aspectRatio:
-              showcaseProject.device === "phone"
-                ? showcaseImage.frameRatio
-                : undefined,
-          }}
-        >
+        {!isShowcaseReady ? (
+          <div className="hero-showcase-preloader" role="status" aria-label="Loading project previews">
+            <span>Loading previews</span>
+          </div>
+        ) : (
+          <div
+            className={`hero-device hero-device--${showcaseProject.device} hero-device--entering${showcaseWatch ? " hero-device--paired" : ""}`}
+            aria-label={`${showcaseProject.title} showcase`}
+            style={{
+              aspectRatio:
+                showcaseProject.device === "phone"
+                  ? showcaseImage.frameRatio
+                  : undefined,
+            }}
+          >
           <div className="hero-device-shell">
             <div className="hero-device-screen">
               <img
@@ -159,7 +197,8 @@ export function HeroSection() {
               ))}
             </div>
           </div>
-        </div>
+          </div>
+        )}
         <div className="hero-inner section-inner">
           <RevealText delay={80} immediate>
             <p className="editorial-kicker">(HELLO) / TING CHUNG CHENG</p>
