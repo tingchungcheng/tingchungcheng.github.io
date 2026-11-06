@@ -902,8 +902,10 @@ h2 {
     0.85rem 1rem 0 rgba(127, 199, 217, 0.16),
     0 2rem 4rem rgba(0, 0, 0, 0.4);
   color: rgba(220, 242, 241, 0.65);
+  perspective: 40rem;
+  transform-style: preserve-3d;
   transform: rotate(45deg);
-  animation: hero-showcase-preloader-spin 1.8s linear infinite;
+  animation: hero-showcase-preloader-flip 4.8s ease-in-out infinite;
 }
 
 .hero-showcase-preloader span {
@@ -916,9 +918,18 @@ h2 {
   transform: rotate(-45deg);
 }
 
-@keyframes hero-showcase-preloader-spin {
-  from { transform: rotate(45deg); }
-  to { transform: rotate(405deg); }
+@keyframes hero-showcase-preloader-flip {
+  0%,
+  18% {
+    transform: rotate(45deg) rotateY(0deg);
+  }
+  50%,
+  68% {
+    transform: rotate(45deg) rotateY(180deg);
+  }
+  100% {
+    transform: rotate(45deg) rotateY(360deg);
+  }
 }
 
 .hero-device {
